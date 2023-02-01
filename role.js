@@ -1,27 +1,24 @@
-import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "lib/mongo"
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../../../lib/mongodb";
 
-
-// For more information on each option (and a full list of options) go to
-// https://next-auth.js.org/configuration/options
-export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
- session: {
+export default (req, res) =>
+  NextAuth(req, res, {
+    session: {
       jwt: true,
     },
-providers: [
-  GoogleProvider({
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET
-  })
-],
-secret:process.env.JWT_SECRET,
-   callbacks: {
+    providers: [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      }),
+    ],
+    adapter: MongoDBAdapter(clientPromise),
+    callbacks: {
       async signIn({ user, account, profile, email, credentials }) {
         if (!user?.role) {
-          user.role = "USER";
+          user.role = "Client";
+          user.banned = false;
         }
         return true;
       },
@@ -32,6 +29,9 @@ secret:process.env.JWT_SECRET,
         if (user?.role) {
           token.role = user.role;
         }
+        if (user?.banned) {
+          token.banned = user.banned;
+        }
         return token;
       },
       async session(session, token) {
@@ -41,7 +41,10 @@ secret:process.env.JWT_SECRET,
         if (token?.role) {
           session.user.role = token.role;
         }
+        if (token?.banned) {
+          token.banned = user.banned;
+        }
         return session;
       },
     },
-})
+  });
