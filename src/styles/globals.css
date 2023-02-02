@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-*, *::before, *::after {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Roboto:wght@400;700&display=swap');*, *::before, *::after {
 box-sizing: border-box;
 }
 * {
@@ -8,6 +7,10 @@ box-sizing: border-box;
 html, body {
 height: 100%;
 font-family: 'Open Sans', sans-serif;
+--prime-color:#00ED64;
+--Dark-green:#001E2B;
+--Deep-green:#116149;
+color: var(--Dark-green);
 }
 body {
 line-height: 1.5;
@@ -23,3 +26,13 @@ font: inherit;
 p, h1, h2, h3, h4, h5, h6 {
 overflow-wrap: break-word;
 }
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (min-width: 700px){
+    body{
+       width: 600px;
+       margin: 0 auto;
+    }
+    }

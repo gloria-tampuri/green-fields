@@ -1,18 +1,22 @@
 import React from 'react'
 import { signOut, useSession } from "next-auth/react"
+import Header from 'Components/Header/Header';
+import Dashboard from 'Components/Dashboard/Dashboard';
+import ManageUsers from 'Components/ManageUsers/ManageUsers';
 
 const DashboardPage = () => {
     const { data: session, status } = useSession()
 
-    console.log(session?.user?.role);
+  
 
   return (
    <>
-    <div>DashboardPage</div>
+    <Header/>
    {session?.user?.role === 'ADMIN' && <div>
-        <h1>Only show if the user role is an ADMIN</h1>
+    <ManageUsers/>
     </div>}
-    <button onClick={()=>signOut()}>Sign out</button></>
+    <Dashboard/>
+    </>
   )
 }
 

@@ -1,0 +1,17 @@
+.manage{
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+    padding: 1rem 1rem;
+}
+
+.manage button{
+    background-color: var(--prime-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+}
+
+.manage button:hover{
+    border-radius:1rem;
+}
