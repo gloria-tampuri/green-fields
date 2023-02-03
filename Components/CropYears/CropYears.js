@@ -1,4 +1,5 @@
 import React from 'react'
+import classes from './CropYears.module.css'
 import useSWR from 'swr'
 import Link from 'next/link'
 
@@ -9,9 +10,9 @@ const CropYears = () => {
     const { data, error } = useSWR('/api/crops/year', fetcher,{refreshInterval: 1000})
    
   return (
-    <div>
+    <div  className={classes.year}>
         {data && data.map((year,i)=><ul key={i}>
-        <li><Link href={`/dashboard/${year}`}> {year}</Link> </li>
+        <li className={classes.yearlist}><Link className={classes.yearlistLink} href={`/dashboard/${year}`}> {year}</Link> </li>
         </ul>)}
 
     </div>

@@ -1,0 +1,37 @@
+.back{
+    font-size: 2.2rem;
+    margin: 1rem 0 0 2rem ;
+}
+
+.header{
+   text-align: center;
+   text-transform: capitalize;
+}
+
+
+.actions{
+    padding: 2rem 1rem 2rem 2rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+   }
+
+   .actionbtn{
+    width: 40%;
+    background-color: var(--prime-color);
+    margin-right: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-radius: 15px;
+    color: var(--Dark-green);
+    font-weight: 700;
+    }
+
+    .edit{
+        margin: 2rem;
+        text-align: right;
+        color: var(--Dark-green);
+        font-weight: 700;
+    }
