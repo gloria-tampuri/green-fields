@@ -9,6 +9,8 @@ export default function Home() {
 
   if (session) {
     return router.push('/dashboard')
+  }else{
+     <p>Loading...</p>
   }
 
   return (
