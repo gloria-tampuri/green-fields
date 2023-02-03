@@ -1,9 +1,16 @@
 import Login from 'Components/Login/Login'
-import { getServerSession } from 'next-auth'
 import Head from 'next/head'
-
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const router = useRouter()
+  const { data: session } = useSession()
+
+  if (session) {
+    return router.push('/dashboard')
+  }
+
   return (
     <>
       <Head>
@@ -12,28 +19,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <main>
-      <Login/>
-    </main>
+      <main>
+        <Login />
+      </main>
     </>
   )
-}
-
-export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res)
-
-  if (session) {
-    return {
-      redirect: {
-        destination: '/dashboard',
-        permanent: false,
-      },
-    }
-  }
-
-  return {
-    props: {
-      session,
-    },
-  }
 }
