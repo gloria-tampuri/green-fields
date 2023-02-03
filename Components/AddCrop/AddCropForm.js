@@ -72,10 +72,10 @@ const AddCropForm = () => {
 
         <form className={classes.addForm} onSubmit={handlerFormSubmit}>
         <label htmlFor='batchnumber'> Crop ID</label>
-        <input className={classes.addFormInput} type='number' placeholder='Enter Batch Number' id='batchnumber' value={cropId} onChange={(e)=>setCropId(+e.target.value)}  required/>
+        <input className={classes.addFormInput} type='number' placeholder='Enter Crop Number' id='batchnumber' value={cropId} onChange={(e)=>setCropId(+e.target.value)}  required/>
 
         <label htmlFor='cropName'> Crop Name</label>
-        <input  className={classes.addFormInput} type='text' placeholder='Enter Batch Name' id='cropName' required value={cropName} onChange={(e)=>setCropName(e.target.value)}  />
+        <input  className={classes.addFormInput} type='text' placeholder='Enter Crop Name' id='cropName' required value={cropName} onChange={(e)=>setCropName(e.target.value)}  />
 
         <label htmlFor='year'>Year</label>
         <input className={classes.addFormInput} type='text' placeholder='Add year' id='year' required value={year} onChange={(e)=>setYear(e.target.value)}/>

@@ -4,8 +4,9 @@
     }
     
     .sumarryList li span{
-        color: var(--prime-color);
-        font-weight: 700;
+        color: var(--Deep-green);
+        font-weight: 600;
+        text-transform: capitalize;
     }
     
     .profit{
