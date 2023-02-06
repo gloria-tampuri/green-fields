@@ -19,6 +19,11 @@ providers: [
 ],
 secret:process.env.JWT_SECRET,
    callbacks: {
+    redirect:async(url, baseUrl)=>{
+      return url.startsWith(baseUrl)
+      ? Promise.resolve(url)
+      : Promise.resolve(baseUrl)
+    },
       async signIn({ user, account, profile, email, credentials }) {
         if (!user?.role) {
           user.role = "USER";
