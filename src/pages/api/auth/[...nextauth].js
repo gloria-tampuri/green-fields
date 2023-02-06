@@ -20,8 +20,10 @@ providers: [
 secret:process.env.JWT_SECRET,
    callbacks: {
       async signIn({ user, account, profile, email, credentials }) {
-        if (!user?.role) {
+        if (!user?.role ||!user?.isBanned ) {
           user.role = "USER";
+          user.isBanned = true;
+
         }
         return true;
       },

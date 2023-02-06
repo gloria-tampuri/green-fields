@@ -7,11 +7,11 @@ export default function Home() {
   const router = useRouter()
   const { data: session } = useSession()
 
-  // if (session) {
-  //   return router.push('/dashboard')
-  // }else{
-  //    <p>Loading...</p>
-  // }
+  if (session) {
+    return router.push('/dashboard')
+  }else{
+     <p>Loading...</p>
+  }
 
   return (
     <>
