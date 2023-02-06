@@ -7,7 +7,7 @@ const CropSummary = ({crop}) => {
   return (
     <div>
         <ul className={classes.sumarryList}>
-            <li>Crop Number: <span>{crop && crop.cropId}</span></li>
+            {/* <li>Crop Number: <span>{crop && crop.cropId}</span></li> */}
             <li>Crop Name: <span>{crop && crop.cropName}</span></li>
             <li>Start Date: <span>{crop && crop.startDate}</span></li>
             <li>End Date: <span>{crop && crop.endDate}</span></li>

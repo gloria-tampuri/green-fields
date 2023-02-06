@@ -10,7 +10,9 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Crop = () => {
    const router = useRouter()
-  const {cropId} = router.query
+  const {year,cropId} = router.query
+  console.log(year, cropId);
+ 
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
   return (
     <div>
@@ -19,9 +21,9 @@ const Crop = () => {
         <BiArrowBack className={classes.back} onClick={() => router.back()} />
         <h1 className={classes.header}>Crop {data?.crop?.cropName}</h1>
         <div className={classes.actions}>
-        <div className={classes.actionbtn} onClick={() => router.push(``)}>Sales</div>
-        <div className={classes.actionbtn} onClick={() => router.push(``)}>Expenditure</div>
-        <div className={classes.actionbtn} onClick={() => router.push(``)}>Mortality</div>
+        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/sales`)}>Sales</div>
+        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/expenditure`)}>Expenditure</div>
+        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/miscellaneous`)}>Mortality</div>
       </div>
         </div>
         <CropSummary crop = {data && data.crop}/>

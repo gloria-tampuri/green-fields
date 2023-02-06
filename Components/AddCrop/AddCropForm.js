@@ -13,7 +13,7 @@ const AddCropForm = () => {
       position:'top-center',
     });
     const[cropName, setCropName] = useState('')
-    const[cropId,setCropId]=useState(0)
+    // const[cropId,setCropId]=useState(0)
     const[startDate, setStartDate]= useState('')
     const[numberofbags, setNumberofbags]=useState(0)
     const[endDate, setEndDate]=useState('')
@@ -25,7 +25,7 @@ const AddCropForm = () => {
   
       const data = {
         cropName:  cropName,
-        cropId:cropId,
+        // cropId:cropId,
         startDate:startDate,
         endDate:endDate,
         numberofbags:numberofbags,
@@ -53,7 +53,7 @@ const AddCropForm = () => {
       body: (JSON.stringify(data))
     })
     setCropName('')
-    setCropId('')
+    // setCropId('')
     setStartDate('')
     setNumberofbags('')
     setEndDate('')
@@ -71,8 +71,8 @@ const AddCropForm = () => {
         <h1 className={classes.addHeader}>Create New Crop</h1>
 
         <form className={classes.addForm} onSubmit={handlerFormSubmit}>
-        <label htmlFor='batchnumber'> Crop ID</label>
-        <input className={classes.addFormInput} type='number' placeholder='Enter Crop Number' id='batchnumber' value={cropId} onChange={(e)=>setCropId(+e.target.value)}  required/>
+        {/* <label htmlFor='batchnumber'> Crop ID</label>
+        <input className={classes.addFormInput} type='number' placeholder='Enter Crop Number' id='batchnumber' value={cropId} onChange={(e)=>setCropId(+e.target.value)}  required/> */}
 
         <label htmlFor='cropName'> Crop Name</label>
         <input  className={classes.addFormInput} type='text' placeholder='Enter Crop Name' id='cropName' required value={cropName} onChange={(e)=>setCropName(e.target.value)}  />
