@@ -1,8 +1,14 @@
+import Expenditure from 'Components/Expenditure/Expenditure'
+import Header from 'Components/Header/Header'
+
 import React from 'react'
 
 const expenditure = () => {
   return (
-    <div>expenditure</div>
+    <div>
+      <Header/>
+    <Expenditure/>
+      </div>
   )
 }
 

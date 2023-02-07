@@ -1,9 +1,10 @@
-.SalesList{
+.ExpenditureList{
+  
     width: 90%;
     margin:4rem auto;
 }
 
-.saleshead{
+.Expenditurehead{
     display: flex;
     justify-content: space-between;
 }
@@ -12,7 +13,7 @@
     margin-top: 2rem;
 }
 
-/* .salesection{
+/* .Expendituresection{
     margin: 1rem 0;
     display: flex;
     justify-content: space-between;
@@ -20,6 +21,9 @@
     background-color: #343A46;
     padding:1rem;
     border-radius: 15px;
+} */
+
+/* .expendituresection{
     width: 100%;
     border-collapse: collapse;
     border-radius: 15px;
@@ -27,40 +31,34 @@
     background-color: #343A46;
 } */
 
-.salesection{
+.expendituresection{
     width: 100%;
     border-collapse: collapse;
     border-radius: 15px;
     overflow: hidden;
     color: #343A46;
     background-color:rgb(245, 245, 245) ;
-    padding: 1rem;
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
 }
 
-.salesection td, .salesection th{
+
+.expendituresection td, .expendituresection th{
   padding: 8px;
   text-align: center;
-
 }
-
-.salesection1 td, .salesection th{
+.expendituresection1 td, .expendituresection th{
     padding: 8px;
     text-align: center;
-  
   }
-.salesection tbody tr:nth-child(odd){
-   background-color: #087da441;;
+.expendituresection tbody tr:nth-child(odd){
+   background-color: #8dceba;;
 
 }
-.salesection1 tbody tr:nth-child(odd){
-    background-color: #087da441;;
- 
- }
 
-/* .salesection tbody tr:nth-child(even){
-    background-color: var(--prime-color);
-    margin: 1rem 0;
+/* .expendituresection1 tbody tr:nth-child(odd){
+    background-color: #087da441;;
  } */
+
  .actions{
     display: flex;
     align-items: center;

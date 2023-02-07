@@ -28,8 +28,6 @@ const SaleForm = () => {
 
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
 
-    console.log(data);
-
 
     const onSubmitForm = async (e) => {
         e.preventDefault()
@@ -66,7 +64,6 @@ const SaleForm = () => {
             ]
         }
 
-        console.log(postData);
         console.log(router.query.cropId);
 
         const response = await fetch(`/api/crops/${cropId}`, {
@@ -93,7 +90,7 @@ const SaleForm = () => {
                 <input className={classes.SaleFormInput} type='text' placeholder='customer Name' value={customerName} onChange={(e) => { setCustomerName(e.target.value) }} />
                 <input className={classes.SaleFormInput} type='date' value={date} onChange={(e) => { setDate(e.target.value) }} />
                 <input className={classes.SaleFormInput} type='number' placeholder='Amount' value={amount} onChange={(e) => { setAmount(+e.target.value) }} />
-                <input className={classes.SaleFormInput} type='number' placeholder='Number of fishes'
+                <input className={classes.SaleFormInput} type='number' placeholder='Number of Bags'
                     value={numberOfBags} onChange={(e) => { setNumberOfBags(+e.target.value) }} />
 
                 <div className={classes.addSale}> <button type='submit' >Add Sale</button> </div>
