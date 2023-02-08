@@ -32,6 +32,7 @@
     .edit{
         margin: 2rem;
         text-align: right;
-        color: var(--Dark-green);
+        color: var(--Deep-green);
         font-weight: 700;
+        cursor: pointer;
     }

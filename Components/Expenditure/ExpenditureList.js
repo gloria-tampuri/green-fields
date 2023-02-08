@@ -6,7 +6,7 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-const ExpenditureList = () => {
+const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
     const router = useRouter()
  
   const[totalAmount, setTotalAmount] =useState(0)
@@ -21,6 +21,11 @@ const ExpenditureList = () => {
     )
     setTotalAmount(allAmounts)
   },[data])
+
+  // const passUpdateData=(expenditure)=>{
+  //   onIsUpdate()
+  //  return onUpdateData(expenditure)
+  // }
 
   return (
      <div className={classes.ExpenditureList}>
@@ -37,14 +42,17 @@ const ExpenditureList = () => {
                     <th>Date</th>
                     <th>Expenditure Type</th>
                     <th>Amount</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-            {data && data?.crop?.expenditure.map((expenditure,index)=> <tr>
+            {data && data?.crop?.expenditure.map((expenditure)=> <tr key={expenditure.expenditureId}>
                  <td>{expenditure.date}</td>
                  <td>{expenditure.expenditureType}</td>
                  <td>{expenditure.amount}</td>
-                 <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete/></span></td>
+                 <td className={classes.actions}> <AiOutlineEdit 
+                //  onClick={()=>passUpdateData(expenditure)}
+                 /> <span><AiOutlineDelete/></span></td>
              </tr>
                )}
             </tbody>

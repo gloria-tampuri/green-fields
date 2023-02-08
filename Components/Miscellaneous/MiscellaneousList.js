@@ -21,6 +21,9 @@ const MiscellaneousList = () => {
       )
       setTotalAmount(allAmounts)
     },[data])
+
+    console.log(data?.crop?.miscellaneous);
+
   return (
     <div className={classes.MiscellaneousList}>
     <div className={classes.Miscellaneoushead}>
@@ -36,6 +39,7 @@ const MiscellaneousList = () => {
                     <th>Date</th>
                     <th>Miscellaneous Type</th>
                     <th>Amount</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>

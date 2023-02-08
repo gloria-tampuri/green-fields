@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import classes from  './MiscellaneousForm.module.css'
 import {BiArrowBack} from 'react-icons/bi'
+import { v4 as uuidv4 } from 'uuid';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -14,7 +15,7 @@ const MiscellaneousForm = () => {
     const router=useRouter()
 
 
-    const notify = () => toast.success("New Expenditure Added",{
+    const notify = () => toast.success("New Miscellaneous Added",{
       position:'top-center',autoClose: 100,
     });
     
@@ -34,6 +35,7 @@ const MiscellaneousForm = () => {
       setAmount('')
       
       const formdata= {
+          miscellaneousId:uuidv4(),
              miscellaneousType,
              date,
              amount
@@ -80,11 +82,11 @@ const MiscellaneousForm = () => {
  <h2>Add Miscellaneous</h2>
 
  <form className={classes.MiscellaneousForm} onSubmit={onSubmitMiscellaneousForm}>
-     <input type='text' placeholder='Miscellaneous Name' value={miscellaneousType} onChange={(e)=>{setMiscellaneousType(e.target.value)}}/>
+     <input type='text' required placeholder='Miscellaneous Name' value={miscellaneousType} onChange={(e)=>{setMiscellaneousType(e.target.value)}}/>
 
-     <input type='date'  value={date} onChange={(e)=>{setDate(e.target.value)}}/>
+     <input type='date' required value={date} onChange={(e)=>{setDate(e.target.value)}}/>
 
-     <input type='number' placeholder='Amount'  value={amount} onChange={(e)=>{setAmount(e.target.value)}}/>
+     <input type='number' placeholder='Amount' required  value={amount} onChange={(e)=>{setAmount(e.target.value)}}/>
     <div className={classes.addMiscellaneous}> <button type='submit'>Add Miscellaneous</button> </div>
     <ToastContainer/>
  </form>

@@ -14,7 +14,12 @@ const Crop = () => {
   console.log(year, cropId);
  
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
+
+    const getToEdit = () => {
+     return router.push(`/dashboard/${year}/${cropId}/update`)
+    }
   return (
+    
     <div>
         <Header/>
         <div>
@@ -26,7 +31,7 @@ const Crop = () => {
         <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/miscellaneous`)}>Miscellaneous</div>
       </div>
         </div>
-        <div className={classes.edit}><p>Edit</p></div>
+        <div className={classes.edit}><p onClick={getToEdit}>Edit</p></div>
         <CropSummary crop = {data && data.crop}/>
   </div>
   )
