@@ -14,7 +14,6 @@ const connectToDatabase = async () => {
 export default async function handler(req, res) {
     const cropsCollection = await connectToDatabase()
     const {year} = req.query
-console.log(year);
     if (req.method === 'GET') {
         try {
            const data = await cropsCollection.find({year: year}).toArray()

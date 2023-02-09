@@ -24,10 +24,10 @@ const Update = () => {
     const[year, setYear] =useState('')
 
     const {cropId} = router.query
-    console.log(cropId);
+  
 
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
-    console.log(data?.crop);
+    
 
     useEffect(() => {
       if(data?.crop){

@@ -11,7 +11,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const Crop = () => {
    const router = useRouter()
   const {year,cropId} = router.query
-  console.log(year, cropId);
+ 
  
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
 

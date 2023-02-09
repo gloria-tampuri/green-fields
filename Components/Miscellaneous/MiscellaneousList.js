@@ -1,14 +1,20 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState,useContext} from 'react'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
+import { signOut, useSession } from "next-auth/react"
 import classes from './MiscellaneousList.module.css'
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
+import Delete from 'Components/Delete/Delete'
+import { DeleteContext } from 'Context/DeleteContext'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const MiscellaneousList = () => {
     const router = useRouter()
- 
+  const deleteCtx = useContext(DeleteContext)
+  const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
+
+    const { data: session, status } = useSession()
     const[totalAmount, setTotalAmount] =useState(0)
   
     const { data, error } = useSWR(`/api/crops/${router.query.cropId}`, fetcher,{refreshInterval: 1000})
@@ -22,7 +28,7 @@ const MiscellaneousList = () => {
       setTotalAmount(allAmounts)
     },[data])
 
-    console.log(data?.crop?.miscellaneous);
+  
 
   return (
     <div className={classes.MiscellaneousList}>
@@ -39,8 +45,7 @@ const MiscellaneousList = () => {
                     <th>Date</th>
                     <th>Miscellaneous Type</th>
                     <th>Amount</th>
-                    <th>Actions</th>
-                </tr>
+                    {session?.user?.role === 'ADMIN' &&  <th>Actions</th> }                </tr>
             </thead>
             <tbody>
             {data && data?.crop?.miscellaneous.map((miscellaneous)=> <tr
@@ -48,13 +53,14 @@ const MiscellaneousList = () => {
                  <td>{miscellaneous.date}</td>
                  <td>{miscellaneous.miscellaneousType}</td>
                  <td>{miscellaneous.amount}</td>
-                 <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete/></span></td>
+                 {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete onClick={showDeleteModal} /></span></td>}
              </tr>
                )}
             </tbody>
         </table>
          
     </div>
+    {deleteModal && <Delete/>}
     </div>
   )
 }

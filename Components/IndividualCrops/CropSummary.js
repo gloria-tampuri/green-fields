@@ -4,7 +4,7 @@ import classes from './Summary.module.css'
 
 const CropSummary = ({ crop }) => {
   // const {cropName,cropId, numberOfBags, startDate, endDate} = crop
-  console.log(crop);
+
 
   // const[totalHarvestedbags, setTotalHarvestedbags]=useState(0)
   const [soldBags, SetSoldBags] = useState(0)
@@ -31,7 +31,7 @@ const CropSummary = ({ crop }) => {
         const totalBagsSold = crop?.sales?.map(sale => +sale.numberOfBags).reduce(
           (accumulator, currentValue) => accumulator + currentValue,
           0)
-          console.log(totalBagsSold);
+       
 
       setTotalSales(totalSalesAmount)
       setTotalExpenditure(totalExpenditureAmount)

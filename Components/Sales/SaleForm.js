@@ -64,7 +64,7 @@ const SaleForm = () => {
             ]
         }
 
-        console.log(router.query.cropId);
+     
 
         const response = await fetch(`/api/crops/${cropId}`, {
             method: "PATCH",
@@ -87,10 +87,10 @@ const SaleForm = () => {
             <h2>Add New Sale</h2>
 
             <form className={classes.SaleForm} onSubmit={onSubmitForm}>
-                <input className={classes.SaleFormInput} type='text' placeholder='customer Name' value={customerName} onChange={(e) => { setCustomerName(e.target.value) }} />
-                <input className={classes.SaleFormInput} type='date' value={date} onChange={(e) => { setDate(e.target.value) }} />
+                <input className={classes.SaleFormInput} type='text' placeholder='customer Name' value={customerName} required onChange={(e) => { setCustomerName(e.target.value) }} />
+                <input className={classes.SaleFormInput} required type='date' value={date} onChange={(e) => { setDate(e.target.value) }} />
                 <input className={classes.SaleFormInput} type='number' placeholder='Amount' value={amount} onChange={(e) => { setAmount(+e.target.value) }} />
-                <input className={classes.SaleFormInput} type='number' placeholder='Number of Bags'
+                <input className={classes.SaleFormInput} type='number' placeholder='Number of Bags' required
                     value={numberOfBags} onChange={(e) => { setNumberOfBags(+e.target.value) }} />
 
                 <div className={classes.addSale}> <button type='submit' >Add Sale</button> </div>

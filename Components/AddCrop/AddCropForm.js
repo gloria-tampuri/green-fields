@@ -41,7 +41,7 @@ const AddCropForm = () => {
       ],
       
     }
-    console.log(data);
+   
     notify()
    
     

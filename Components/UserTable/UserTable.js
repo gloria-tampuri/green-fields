@@ -9,7 +9,7 @@ const UserTable = () => {
     const router = useRouter()
     const { data, error } = useSWR(`/api/users`, fetcher, { refreshInterval: 1000 })
 
-    console.log(data?.users);
+   
 
     return (
         <div>

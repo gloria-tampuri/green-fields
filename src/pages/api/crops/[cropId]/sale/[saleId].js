@@ -21,13 +21,16 @@ export default async function handler(req, res) {
             }, {
                 $pull: {
                     sales: {
-                        _id: saleId
+                        saleId: saleId
                     }
                 }
             });
-            res.status(200).json({ message: "Crop updated successfully" })
+           res.status(200).json({ message: "Crop updated successfully" })
+        
         } catch (error) {
             res.status(500).json({ status: 500, message: "Something went wrong" })
         }
     }
 }
+
+//api/crops/[cropId]/sale/[saleId]

@@ -21,7 +21,7 @@ export default async function handler(req, res) {
             }, {
                 $pull: {
                     miscellaneous: {
-                        _id: miscellaneousId
+                        miscellaneousId: miscellaneousId
                     }
                 }
             });

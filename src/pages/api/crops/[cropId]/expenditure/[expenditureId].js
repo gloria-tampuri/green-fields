@@ -21,7 +21,7 @@ export default async function handler(req, res) {
             }, {
                 $pull: {
                     expenditure: {
-                        _id: expenditureId
+                        expenditureId: expenditureId
                     }
                 }
             });

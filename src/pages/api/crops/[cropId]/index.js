@@ -20,7 +20,7 @@ export default async function handler(req, res) {
             await cropsCollection.updateOne({ _id: ObjectId(cropId) }, { $set: { ...crop, updatedAt: new Date() } })
             res.status(200).json({ message: "Crop updated successfully" })
         } catch (error) {
-            console.log(error);
+           
             res.status(500).json({ status: 500, message: "Something went wrong" })
         }
     }
