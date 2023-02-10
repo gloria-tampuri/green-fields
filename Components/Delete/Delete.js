@@ -6,6 +6,7 @@ import { DeleteContext } from '../../Context/DeleteContext'
 import { useRouter } from 'next/router'
 
 const Delete = ({selectedSaleId}) => {
+  console.log(selectedSaleId)
   const router = useRouter()
   // Get the id of the crop
  const {cropId} = router.query
@@ -14,12 +15,9 @@ const Delete = ({selectedSaleId}) => {
     const{ hideDeleteModal}=deleteCtx
     const deleteSaleHandler = async () =>{
       // Perform our delete logic here
-      console.log("Start API");
-      // selectedSaleId && await fetch(`/api/crops/${cropId}/sale/${selectedSaleId}`,{
-      //     method: 'DELETE',
-      //     headers:{
-      //       "Content-Type":"application/json"
-      //     },
+      // console.log("Start API");
+      //  await fetch(`/api/crops/${cropId}/sale/${selectedSaleId}`,{
+      //     method: 'DELETE'
       //    })
        hideDeleteModal()
     }

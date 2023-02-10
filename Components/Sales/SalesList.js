@@ -61,7 +61,7 @@ const SalesList = () => {
               <td>{sale.customerName}</td>
               <td>{sale.numberOfBags}</td>
               <td>{sale.amount}</td>
-              {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete onClick={()=>deleteHandler(sale.saleId)} /></span></td>}
+              {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete onClick={()=>deleteHandler(sale.saleId && sale.saleId)} /></span></td>}
              
           </tr>
             )}
