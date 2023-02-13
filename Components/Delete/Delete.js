@@ -22,7 +22,7 @@ const Delete = ({selectedSaleId}) => {
        hideDeleteModal()
     }
   return (
-    <Modal>
+    <Modal> 
         <div className={classes.close}><AiOutlineClose onClick={hideDeleteModal} className={classes.closeIcon}/></div>
    <p className={classes.header}> Are you sure you want to delete entery     ?</p>
 

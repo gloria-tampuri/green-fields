@@ -21,7 +21,7 @@ const CropList = () => {
       <h1 className={classes.header}>List of Crops for {year}</h1>
      <div className={classes.year}>
      {data?.crops.map((crop)=><ul key={crop._id}>
-        <li className={classes.croplist}><Link className={classes.croplistLink}  href={`/dashboard/${crop.year}/${crop._id}`}> {crop.cropName}</Link> </li>
+     <Link className={classes.croplistLink}  href={`/dashboard/${crop.year}/crops/${crop._id}`}> <li className={classes.croplist}> {crop.cropName} </li></Link>
         </ul>)}
      </div>
 

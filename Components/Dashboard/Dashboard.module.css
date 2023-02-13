@@ -1,0 +1,10 @@
+.cropequip{
+    display: flex;
+    margin: 1rem 2rem;
+    justify-content: space-between;
+}
+
+.option{
+    text-decoration: underline;
+}
+

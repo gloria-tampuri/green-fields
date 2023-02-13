@@ -12,7 +12,7 @@ const CropYears = () => {
   return (
     <div  className={classes.year}>
         {data && data.map((year,i)=><ul key={i}>
-        <Link className={classes.yearlistLink} href={`/dashboard/${year}`}> <li className={classes.yearlist}> {year} </li></Link>
+        <Link className={classes.yearlistLink} href={`/dashboard/${year}/crops`}> <li className={classes.yearlist}> {year} </li></Link>
         </ul>)}
 
     </div>

@@ -68,7 +68,7 @@ const AddCropForm = () => {
       <Header />
       <ToastContainer />
       <BiArrowBack className={classes.back} onClick={() => router.back()} />
-      <h1 className={classes.addHeader}>Create New Crop</h1>
+      <h1 className={classes.addHeader}>Add New Crop</h1>
 
       <form className={classes.addForm} onSubmit={handlerFormSubmit}>
 

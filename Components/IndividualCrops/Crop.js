@@ -26,9 +26,9 @@ const Crop = () => {
         <BiArrowBack className={classes.back} onClick={() => router.back()} />
         <h1 className={classes.header}>{data?.crop?.cropName}</h1>
         <div className={classes.actions}>
-        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/sales`)}>Sales</div>
-        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/expenditure`)}>Expenditure</div>
-        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/${cropId}/miscellaneous`)}>Miscellaneous</div>
+        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/crops/${cropId}/sales`)}>Sales</div>
+        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/crops/${cropId}/expenditure`)}>Expenditure</div>
+        <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/crops/${cropId}/miscellaneous`)}>Miscellaneous</div>
       </div>
         </div>
         <div className={classes.edit}><p onClick={getToEdit}>Edit</p></div>

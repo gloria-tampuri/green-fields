@@ -1,4 +1,4 @@
-import miscellaneous from '@/pages/dashboard/[year]/[cropId]/miscellaneous';
+import miscellaneous from '@/pages/dashboard/[year]/crops/[cropId]/miscellaneous';
 import React, { useEffect, useState } from 'react'
 import classes from './Summary.module.css'
 

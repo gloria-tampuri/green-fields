@@ -1,13 +1,28 @@
 import AddCrop from 'Components/AddCrop/AddCrop'
-import CropList from 'Components/CropList/CropList'
+import classes from './Dashboard.module.css'
 import CropYears from 'Components/CropYears/CropYears'
-import React from 'react'
+import React, { useState } from 'react'
+import AddEquipment from 'Components/Equipment/AddEquipment/AddEquipment'
+import EquipmentYears from 'Components/Equipment/EquipmentYears/EquipmentYears'
+
 
 const Dashboard = () => {
+  const [type, setType] = useState(true)
+
+  const changeTypeToEquip = () => {
+    setType(false)
+  }
+  const changeTypeToCrop = () => {
+    setType(true)
+  }
   return (
     <div>
-        <AddCrop/>
-       <CropYears/>
+      <div className={classes.cropequip}>
+        <h2 className={type ? classes.option : ''} onClick={changeTypeToCrop}>Crops</h2>
+        <h2 className={type ?'': classes.option} onClick={changeTypeToEquip}>      Equipments</h2>
+      </div>
+      {type ? <div><AddCrop />
+        <CropYears /></div> : <div> <AddEquipment/> <EquipmentYears/> </div>}
     </div>
   )
 }
