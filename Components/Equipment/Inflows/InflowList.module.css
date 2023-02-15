@@ -1,0 +1,69 @@
+.SalesList{
+    width: 90%;
+    margin:4rem auto;
+}
+
+.saleshead{
+    display: flex;
+    justify-content: space-between;
+}
+
+.List{
+    margin-top: 2rem;
+}
+
+/* .salesection{
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343A46;
+    padding:1rem;
+    border-radius: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #343A46;
+} */
+
+.salesection{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    color: #343A46;
+    background-color:rgb(245, 245, 245) ;
+    padding: 1rem;
+}
+
+.salesection td, .salesection th{
+  padding: 8px;
+  text-align: center;
+
+}
+
+.salesection1 td, .salesection th{
+    padding: 8px;
+    text-align: center;
+  
+  }
+.salesection tbody tr:nth-child(odd){
+   background-color: #8dceba;
+
+}
+.salesection1 tbody tr:nth-child(odd){
+    background-color: #8dceba;;
+ 
+ }
+
+/* .salesection tbody tr:nth-child(even){
+    background-color: var(--prime-color);
+    margin: 1rem 0;
+ } */
+ .actions{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+ }

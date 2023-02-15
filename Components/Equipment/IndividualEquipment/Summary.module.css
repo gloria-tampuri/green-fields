@@ -1,0 +1,21 @@
+.sumarryList li{
+    list-style: none;
+    margin-bottom: 0.5rem;
+    }
+    
+    .sumarryList li span{
+        color: var(--Deep-green);
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+    
+    .profit{
+        color: white;
+       display:flex;
+       margin: 2rem auto ;
+       gap: 1rem;
+       background-color: var(--prime-color);
+       padding: 0.5rem 1rem;
+       width: fit-content;
+       border-radius: 0.3rem;
+    }

@@ -17,7 +17,6 @@ const Update = () => {
       autoClose:2000
     });
     const[cropName, setCropName] = useState('')
-    // const[cropId,setCropId]=useState(0)
     const[startDate, setStartDate]= useState('')
     const[numberofbags, setNumberofbags]=useState(0)
     const[endDate, setEndDate]=useState('')

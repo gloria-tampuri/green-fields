@@ -1,0 +1,69 @@
+.AddMiscellaneousForm{
+    width: 90%;
+    margin: 1rem auto;
+}
+.back{
+    font-size: 2.2rem;
+    margin: 1rem 0;
+}
+.arrowName{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* .MiscellaneousForm{
+    width:100%;
+    margin: 1rem 0;
+    background-color: #343A46;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+} */
+
+.MiscellaneousForm{
+    width:100%;
+    margin: 1rem 0;
+    border-radius: 15px;
+    background-color:rgb(245, 245, 245) ;
+    padding: 2rem 1rem;
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* .MiscellaneousForm input{
+    display: block;
+    width: 100%;
+    height: 53%;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    color: #DCD2D2;
+    background-color: #23272F;
+    margin-bottom: 1.5rem;
+    color: white;
+} */
+
+.addMiscellaneous{
+    text-align: right;
+  }
+  .addMiscellaneous button{
+      background-color: var(--Deep-green);
+      border: none;
+      width: 50%;
+      padding: 0.5rem 0;
+      color: white;
+      border-radius: 15px;
+    }
+
+.MiscellaneousForm input{
+    display: block;
+    width: 100%;
+    height: 53%;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    margin-bottom: 1.5rem;
+    color: #343A46;
+    background-color:rgb(245, 245, 245) ;
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+}

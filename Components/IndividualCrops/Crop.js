@@ -16,7 +16,7 @@ const Crop = () => {
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
 
     const getToEdit = () => {
-     return router.push(`/dashboard/${year}/${cropId}/update`)
+     return router.push(`/dashboard/${year}/crops/${cropId}/update`)
     }
   return (
     

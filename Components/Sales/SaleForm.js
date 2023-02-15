@@ -60,7 +60,7 @@ const SaleForm = () => {
                 ...data.crop.expenditure,
             ],
             miscellaneous: [
-                ...data.crop.expenditure,
+                ...data.crop.miscellaneous,
             ]
         }
 
@@ -82,7 +82,7 @@ const SaleForm = () => {
 
     return (
         <div className={classes.AddSaleForm}>
-            <div className={classes.arrowName}> <BiArrowBack className={classes.back} onClick={() => router.back()} /> <h2> {data && data.batchName}</h2> <h1></h1>
+            <div className={classes.arrowName}> <BiArrowBack className={classes.back} onClick={() => router.back()} /> <h2> { data?.crop?.cropName}</h2> 
             </div>
             <h2>Add New Sale</h2>
 

@@ -2,23 +2,52 @@ import React, {useState}from 'react'
 import { BiArrowBack } from 'react-icons/bi'
 import classes from './AddEquipForm.module.css'
 import { useRouter } from 'next/router'
+import moment from 'moment'
+
 
 const AddEquipForm = () => {
     const router= useRouter()
+
     const[equipType,setEquipType]=useState('')
     const[model, setModel]=useState('')
     const[makeYear, setMakeYear] =useState('')
     const [datePurchased, setDatePurchased]=useState('')
 
-    const formSubmitHandler=(e)=>{
+    const notify = () => toast.success("Equipment Updated!",{
+      position:'top-center',
+    
+    });
+
+    const formSubmitHandler=async(e)=>{
+  
         e.preventDefault()
 
-        const data={
-            equipType,
-            model,
-            makeYear,
-            datePurchased
-        }
+        const data = {
+      equipmentType: equipType,
+      model: model,
+      datePurchased: datePurchased,
+      year: moment(datePurchased).format('YYYY'),
+      makeYear: makeYear,
+     
+      inflows: [
+
+      ],
+      expenditure: [
+
+      ],
+      miscellaneous: [
+
+      ],
+
+    }
+
+       const response = await fetch("/api/equipment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: (JSON.stringify(data))
+    })
 
         console.log(data);
 
@@ -27,6 +56,7 @@ const AddEquipForm = () => {
         setMakeYear('')
         setDatePurchased('')
 
+       
        router.back() 
        
     }
@@ -62,7 +92,7 @@ const AddEquipForm = () => {
 
 <label htmlFor='makeYear'>Make Year</label>
         <input className={classes.addFormInput}
-          type='text'
+          type='number'
           placeholder='Enter Make Year'
           id='makeYear'
           required
@@ -72,7 +102,7 @@ const AddEquipForm = () => {
 
 <label htmlFor='datePurchased'>Date Purchased</label>
         <input className={classes.addFormInput}
-          type='Date'
+          type='date'
           placeholder='Enter Date Purchased'
           id='datePurchased'
           required
