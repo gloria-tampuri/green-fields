@@ -23,28 +23,57 @@ const ExpenditureForm = () => {
     
       const { year, equipmentId } = router.query
 
-      const { data, error } = useSWR(`/api/equipments/${equipmentId}`, fetcher, { refreshInterval: 1000 })
+      const { data, error } = useSWR(`/api/equipment/${equipmentId}`, fetcher, { refreshInterval: 1000 })
 
       const onSubmitExpenditureForm=async(e)=>{
         e.preventDefault()
          
         
-        const formdata= {
+        const formData= {
             expenditureId:uuidv4(),
             expenditureType,
             date,
-            amount
-            
+            amount  
         }
         setExpenditureType('')
         setDate('')
         setAmount('')
-        console.log(formdata);
+
+        const postData = {
+          equipmentType: data?.equipment?.equipmentType,
+          model: data?.equipment?.model,
+          makeYear: data?.equipment?.makeYear,
+          datePurchased: data?.equipment?.datePurchased,
+          year: data?.equipment?.year,
+          createdAt: data?.equipment?.createdAt,
+          inflows:[
+              ...data.equipment.inflows,
+          ],
+          expenditure: [
+              ...data.equipment.expenditure,
+              formData
+          ],
+          miscellaneous: [
+              ...data.equipment.miscellaneous,
+          ]
+      }
+    
+       
+      const response = await fetch(`/api/equipment/${equipmentId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: (JSON.stringify(postData))
+    })
+    if (response.ok) {
+        notify();
+    }
         }
 
   return (
     <div>  <div className={classes.AddExpenditureForm}>
-    <div className={classes.arrowName}> <BiArrowBack className={classes.back} onClick={()=>router.back()}/> <h2> </h2> 
+    <div className={classes.arrowName}> <BiArrowBack className={classes.back} onClick={()=>router.back()}/> <h1>{ data?.equipment?.equipmentType} </h1> 
       </div>
  <h2>Add Expenditure</h2>
 

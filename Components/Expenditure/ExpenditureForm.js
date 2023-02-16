@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-const ExpenditureForm = () => {
+const ExpenditureForm = ({updateData}) => {
   const router=useRouter()
   
   

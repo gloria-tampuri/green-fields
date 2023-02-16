@@ -82,7 +82,7 @@ if (response.ok) {
 
       <div className={classes.arrowName}>
         <BiArrowBack className={classes.back} onClick={() => router.back()} />
-        <h2> </h2>
+        <h2> {data?.equipment?.equipmentType} </h2>
       </div>
       <h2>Add Inflow</h2>
 

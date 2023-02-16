@@ -15,11 +15,29 @@ const ExpenditureList = () => {
     const { data: session, status } = useSession()
     const deleteCtx = useContext(DeleteContext)
   const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
+
+  const[totalAmount, setTotalAmount] =useState(0)
+
+  const deleteHandler = (id) =>{
+    setSelectedSaleId(id);
+    showDeleteModal()
+  }
+
+  const { data, error } = useSWR(`/api/equipment/${router.query.equipmentId}`, fetcher,{refreshInterval: 1000})
+
+  useEffect(() =>{
+    const allAmounts = data?.equipment?.expenditure?.map(expenditure => +expenditure.amount).reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    )
+    setTotalAmount(allAmounts)
+  },[data])
+
   return (
     <div className={classes.ExpenditureList}>
     <div className={classes.Expenditurehead}>
       <h2>Total Expenditure</h2> 
-      <h2 className={classes.totalExpenditure}>43434</h2>
+      <h2 className={classes.totalExpenditure}>{totalAmount && totalAmount.toFixed(2)}</h2>
       </div>
 
       <div className={classes.List}>
@@ -34,14 +52,14 @@ const ExpenditureList = () => {
                 </tr>
             </thead>
             <tbody>
-             <tr >
-                 <td>3/5/7</td>
-                 <td>gfee</td>
-                 <td>46546</td>
+            {data && data?.equipment?.expenditure.map((expenditure)=> <tr  key={expenditure.expenditureId}>
+                 <td>{expenditure.date}</td>
+                 <td>{expenditure.expenditureType}</td>
+                 <td>{expenditure.amount}</td>
                  {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}> <AiOutlineEdit 
                 //  onClick={()=>passUpdateData(expenditure)}
                  /> <span><AiOutlineDelete onClick={showDeleteModal}/></span></td> }  
-             </tr>
+             </tr>)}
               
             </tbody>
         </table>
