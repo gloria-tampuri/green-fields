@@ -13,28 +13,65 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const Update = () => {
     const router= useRouter()
 
+    const{equipmentId}=router.query
     
     const notify = () => toast.success("Equipment Updated!",{
         position:'top-center',
         autoClose:2000
       });
 
+      const { data, error } = useSWR(`/api/equipment/${equipmentId}`, fetcher, { refreshInterval: 1000 })
+
+      console.log(data?.equipment);
+
     const[equipType,setEquipType]=useState('')
     const[model, setModel]=useState('')
     const[makeYear, setMakeYear] =useState('')
     const [datePurchased, setDatePurchased]=useState('')
 
-    const formSubmitHandler=(e)=>{
+
+    useEffect(()=>{
+      if(data?.equipment){
+        setEquipType(data?.equipment?.equipmentType)
+        setModel(data?.equipment?.model)
+        setMakeYear(data?.equipment?.makeYear)
+        setDatePurchased(data?.equipment?.datePurchased)
+      }
+    }, [data?.equipment]);
+
+    const formSubmitHandler=async(e)=>{
         e.preventDefault()
 
-        const data={
-            equipType,
-            model,
-            makeYear,
-            datePurchased
+      
+        const updatedData={
+          equipmentType:equipType,
+          model:model,
+          makeYear:makeYear,
+          datePurchased:datePurchased,
+          inflows: [
+            ...data.equipment.inflows,
+         
+        ],
+        expenditure: [
+            ...data.equipment.expenditure,
+        ],
+        miscellaneous: [
+            ...data.equipment.expenditure,
+        ]
+        
         }
 
-        console.log(data);
+        const response = await fetch(`/api/equipment/${equipmentId}`,{
+          method: "PATCH",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body: (JSON.stringify(updatedData))
+        })
+        if(response.ok){
+          notify()
+          return router.back()
+        }
 
         setEquipType('')
         setModel('')

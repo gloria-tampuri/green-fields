@@ -14,11 +14,17 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
     const deleteCtx = useContext(DeleteContext)
   const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
   const[totalAmount, setTotalAmount] =useState(0)
+  const [selectedId, setSelectedId] = useState()
+
 
   const { data: session, status } = useSession()
 
   const { data, error } = useSWR(`/api/crops/${router.query.cropId}`, fetcher,{refreshInterval: 1000})
 
+    const deleteHandler = (id) =>{
+    setSelectedId(id);
+    showDeleteModal()
+  }
 
   useEffect(() =>{
     const allAmounts = data?.crop?.expenditure?.map(expenditure => +expenditure.amount).reduce(
@@ -28,10 +34,11 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
     setTotalAmount(allAmounts)
   },[data])
 
-  // const passUpdateData=(expenditure)=>{
+  const passUpdateData=(expenditure)=>{
+    console.log(expenditure);
   //   onIsUpdate()
   //  return onUpdateData(expenditure)
-  // }
+  }
 
   return (
      <div className={classes.ExpenditureList}>
@@ -57,8 +64,8 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
                  <td>{expenditure.expenditureType}</td>
                  <td>{expenditure.amount}</td>
                  {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}> <AiOutlineEdit 
-                //  onClick={()=>passUpdateData(expenditure)}
-                 /> <span><AiOutlineDelete onClick={showDeleteModal}/></span></td> }
+                onClick={()=>passUpdateData(expenditure)}
+                 /> <span><AiOutlineDelete onClick={() => deleteHandler(expenditure?.expenditureId)}/></span></td> }
                
              </tr>
                )}
@@ -66,7 +73,7 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
         </table>
          
     </div>
-{deleteModal && <Delete/>}
+{deleteModal && <Delete routeUrl="expenditure" selectedId={selectedId}/>}
 
     </div>
   )

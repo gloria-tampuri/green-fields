@@ -27,7 +27,7 @@ const Update = () => {
 
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
     
-
+//To fetch data to the update form
     useEffect(() => {
       if(data?.crop){
         setCropName(data?.crop?.cropName)
