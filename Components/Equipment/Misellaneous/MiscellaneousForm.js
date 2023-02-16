@@ -7,6 +7,9 @@ import classes from  './MiscellaneousForm.module.css'
 import {BiArrowBack} from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid';
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+
 const MiscellaneousForm = () => {
     
     const router=useRouter()
@@ -20,21 +23,58 @@ const MiscellaneousForm = () => {
       const [date, setDate]=useState('')
       const [amount,setAmount]=useState(0)
 
+      const { year,equipmentId } = router.query
+
+      const { data, error } = useSWR(`/api/equipment/${equipmentId}`, fetcher, { refreshInterval: 1000 })
+
       const onSubmitMiscellaneousForm=async(e)=>{
         e.preventDefault()
          
-        setMiscellaneousType('')
-        setDate('')
-        setAmount('')
         
-        const formdata= {
+        
+        const formData= {
             miscellaneousId:uuidv4(),
                miscellaneousType,
                date,
                amount
              
           }
-          console.log(formdata);
+         
+          const postData = {
+            equipmentType: data?.equipment?.equipmentType,
+            model: data?.equipment?.model,
+            makeYear: data?.equipment?.makeYear,
+            datePurchased: data?.equipment?.datePurchased,
+            year: data?.equipment?.year,
+            createdAt: data?.equipment?.createdAt,
+            inflows:[
+                ...data.equipment.inflows,
+               
+            ],
+            expenditure: [
+                ...data.equipment.expenditure,
+            ],
+            miscellaneous: [
+                ...data.equipment.miscellaneous,
+                formData
+            ]
+        }
+      
+         
+        const response = await fetch(`/api/equipment/${equipmentId}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: (JSON.stringify(postData))
+      })
+      if (response.ok) {
+          notify();
+      }
+
+      setMiscellaneousType('')
+        setDate('')
+        setAmount('')
         }
 
   return (

@@ -15,11 +15,13 @@ const ExpenditureList = () => {
     const { data: session, status } = useSession()
     const deleteCtx = useContext(DeleteContext)
   const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
+   
 
   const[totalAmount, setTotalAmount] =useState(0)
+  const [selectedExpenditureId, setSelectedExpenditureId] = useState()
 
   const deleteHandler = (id) =>{
-    setSelectedSaleId(id);
+    setSelectedExpenditureId(id);
     showDeleteModal()
   }
 
@@ -58,14 +60,14 @@ const ExpenditureList = () => {
                  <td>{expenditure.amount}</td>
                  {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}> <AiOutlineEdit 
                 //  onClick={()=>passUpdateData(expenditure)}
-                 /> <span><AiOutlineDelete onClick={showDeleteModal}/></span></td> }  
+                 /> <span><AiOutlineDelete onClick={()=>deleteHandler(expenditure.expenditureId && expenditure.expenditureId)}/></span></td> }  
              </tr>)}
               
             </tbody>
         </table>
          
     </div>
-{deleteModal && <Delete/>}
+{deleteModal && <Delete routeUrl="expenditure" selectedId={selectedExpenditureId}/>}
 
     </div>
   )

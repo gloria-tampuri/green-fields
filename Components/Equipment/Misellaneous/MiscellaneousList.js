@@ -16,13 +16,25 @@ const MiscellaneousList = () => {
 
     const { data: session, status } = useSession()
 
+    const[totalAmount, setTotalAmount] =useState(0)
+
+  const { data, error } = useSWR(`/api/equipment/${router.query.equipmentId}`, fetcher,{refreshInterval: 1000})
+
+  useEffect(() =>{
+    const allAmounts = data?.equipment?.miscellaneous?.map(miscellaneous => +miscellaneous.amount).reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    )
+    setTotalAmount(allAmounts)
+  },[data])
+
     return (
         <div>
 
             <div className={classes.MiscellaneousList}>
                 <div className={classes.Miscellaneoushead}>
                     <h2>Total Miscellaneous</h2>
-                    <h2 className={classes.totalMiscellaneous}>432432</h2>
+                    <h2 className={classes.totalMiscellaneous}>{totalAmount && totalAmount.toFixed(2)}</h2>
                 </div>
 
                 <div className={classes.List}>
@@ -37,12 +49,12 @@ const MiscellaneousList = () => {
                                   </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>23/45/5</td>
-                                <td>dsgdgds</td>
-                                <td>434</td>
+                        {data && data?.equipment?.miscellaneous.map((miscellaneous)=> <tr  key={miscellaneous.miscellaneousId}>
+                                <td>{miscellaneous.date}</td>
+                                <td>{miscellaneous.miscellaneousType}</td>
+                                <td>{miscellaneous.amount}</td>
                                 {session?.user?.role === 'ADMIN' && <td className={classes.actions}> <AiOutlineEdit /> <span><AiOutlineDelete onClick={showDeleteModal} /></span></td>}
-                            </tr>
+                            </tr>)}
 
                         </tbody>
                     </table>

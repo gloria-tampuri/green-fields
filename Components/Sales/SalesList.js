@@ -68,7 +68,7 @@ const SalesList = () => {
          </tbody>
      </table>
 </div>
-{deleteModal && <Delete selectedSaleId={selectedSaleId}/>}
+{deleteModal && <Delete routeUrl="sale" selectedId={selectedSaleId}/>}
  </div>
   )
 }
