@@ -73,16 +73,16 @@ const UserTable = () => {
                 <tbody className={classes.tablebody}>
                     {data && data.users.map(user =>
                         <tr key={user._id}>
-                            <td>{user.name}</td>
+                            <td className={classes.name}>{user.name}</td>
                             <td>
                                 {/* {user.role} */}
-                                <select onChange={(e) => roleHandler(e.target.value, user)} defaultValue={user.role}>
+                                <select className={classes.select} onChange={(e) => roleHandler(e.target.value, user)} defaultValue={user.role}>
                                     <option value='ADMIN'>ADMIN</option>
                                     <option value='USER'>USER</option>
                                 </select>
                             </td>
                             <td>
-                                <select onChange={(e) => isBannedHandler(e.target.value, user)} defaultValue={user.isBanned}>
+                                <select className={classes.select} onChange={(e) => isBannedHandler(e.target.value, user)} defaultValue={user.isBanned}>
                                 <option value={false}>Allowed</option>
                                     <option value={true}>Not Allowed</option>
                                 </select>
