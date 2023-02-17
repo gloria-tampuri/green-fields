@@ -5,20 +5,25 @@ import {AiOutlineClose} from 'react-icons/ai'
 import { DeleteContext } from '../../Context/DeleteContext'
 import { useRouter } from 'next/router'
 
-const Delete = ({selectedId,routeUrl}) => {
-  console.log(selectedId)
+const Delete = ({selectedId,routeUrl,type,typeId}) => {
+ 
   const router = useRouter()
   // Get the id of the crop
  const {cropId} = router.query
+ const {equipmentId} = router.query
 
     const deleteCtx=useContext(DeleteContext)
     const{ hideDeleteModal}=deleteCtx
     const deleteSaleHandler = async () =>{
       // Perform our delete logic here
       console.log("Start API");
-       await fetch(`/api/crops/${cropId}/${routeUrl}/${selectedId}`,{
-          method: 'PATCH'
-         })
+      //  await fetch(`/api/crops/${cropId}/${routeUrl}/${selectedId}`,{
+      //     method: 'PATCH'
+      //    })
+      await fetch(`/api/${type}/${typeId}/${routeUrl}/${selectedId}`,{
+        method: 'PATCH'
+        
+       })
        hideDeleteModal()
     }
   return (

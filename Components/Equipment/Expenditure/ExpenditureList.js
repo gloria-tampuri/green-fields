@@ -15,13 +15,14 @@ const ExpenditureList = () => {
     const { data: session, status } = useSession()
     const deleteCtx = useContext(DeleteContext)
   const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
+ const {equipmentId} = router.query
    
 
   const[totalAmount, setTotalAmount] =useState(0)
-  const [selectedExpenditureId, setSelectedExpenditureId] = useState()
+  const [selectedId, setSelectedId] = useState()
 
   const deleteHandler = (id) =>{
-    setSelectedExpenditureId(id);
+    setSelectedId(id);
     showDeleteModal()
   }
 
@@ -58,16 +59,14 @@ const ExpenditureList = () => {
                  <td>{expenditure.date}</td>
                  <td>{expenditure.expenditureType}</td>
                  <td>{expenditure.amount}</td>
-                 {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}> <AiOutlineEdit 
-                //  onClick={()=>passUpdateData(expenditure)}
-                 /> <span><AiOutlineDelete onClick={()=>deleteHandler(expenditure.expenditureId && expenditure.expenditureId)}/></span></td> }  
+                 {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}> <span><AiOutlineDelete onClick={()=>deleteHandler(expenditure.expenditureId && expenditure.expenditureId)}/></span></td> }  
              </tr>)}
               
             </tbody>
         </table>
          
     </div>
-{deleteModal && <Delete routeUrl="expenditure" selectedId={selectedExpenditureId}/>}
+{deleteModal && <Delete type='equipment' typeId={equipmentId} routeUrl="expenditure" selectedId={selectedId}/>}
 
     </div>
   )

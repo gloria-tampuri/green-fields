@@ -1,17 +1,13 @@
 import Login from 'Components/Login/Login'
 import Head from 'next/head'
-import { useSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
 export default function Home() {
-  const router = useRouter()
-  const { data: session } = useSession()
 
-  if (session) {
-    return router.push('/dashboard')
-  }else{
-     <p>Loading...</p>
-  }
+  // const {data:session} = useSession()
+
+  // console.log(session);
 
   return (
     <>
@@ -27,3 +23,21 @@ export default function Home() {
     </>
   )
 }
+
+export async function getServerSideProps(context){
+  const session = await getSession ({
+    req: context.req
+  })
+
+  if(session){
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false
+      }
+    }
+  }
+    return {
+      props: { session}
+    }
+  }

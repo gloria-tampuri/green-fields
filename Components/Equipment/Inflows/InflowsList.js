@@ -12,20 +12,23 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const InflowsList = () => {
   const router = useRouter()
+ const {equipmentId} = router.query
+ console.log(equipmentId);
+
   const { data: session, status } = useSession()
   const deleteCtx = useContext(DeleteContext)
   const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
 
-  const [selectedInflowId, setSelectedInflowId] = useState()
+  const [selectedId, setSelectedId] = useState()
   const[totalAmount, setTotalAmount] =useState(0)
 
   const { data, error } = useSWR(`/api/equipment/${router.query.equipmentId}`, fetcher,{refreshInterval: 1000})
 
   const deleteHandler = (id) =>{
-    setSelectedSaleId(id);
+    setSelectedId(id);
     showDeleteModal()
   }
-
+console.log(selectedId);
   useEffect(() =>{
     const allAmounts = data?.equipment?.inflows?.map(inflow => +inflow.amount).reduce(
       (accumulator, currentValue) => accumulator + currentValue,
@@ -58,13 +61,13 @@ const InflowsList = () => {
               <td>{inflow.workDate}</td>
               <td>{inflow.workType}</td>
               <td>{inflow.amount}</td>
-              {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete onClick={''} /></span></td>}    
+              {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}>  <span><AiOutlineDelete onClick={() => deleteHandler(inflow?.inflowId)}/></span></td>}    
           </tr>)}
          
          </tbody>
      </table>
 </div>
-{deleteModal && <Delete/>}
+{deleteModal && <Delete type='equipment' typeId={equipmentId} routeUrl="inflows" selectedId={selectedId}/>}
  </div>
   )
 }

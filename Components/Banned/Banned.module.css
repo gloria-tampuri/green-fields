@@ -1,0 +1,12 @@
+.about{
+    margin: 2rem;
+    color: var(--Deep-green);
+    text-align: center;
+    text-shadow: 2px black;
+}
+
+.access{
+    margin: 0 2rem;
+    color: var(--Dark-green);
+    text-align: center;
+}

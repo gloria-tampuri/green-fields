@@ -15,7 +15,7 @@ const SalesList = () => {
   const deleteCtx = useContext(DeleteContext)
   const{ hideDeleteModal,showDeleteModal,deleteModal}=deleteCtx
   const { data: session, status } = useSession()
-
+  const {cropId} = router.query
   const [selectedSaleId, setSelectedSaleId] = useState()
  
   const[totalAmount, setTotalAmount] =useState(0)
@@ -61,14 +61,14 @@ const SalesList = () => {
               <td>{sale.customerName}</td>
               <td>{sale.numberOfBags}</td>
               <td>{sale.amount}</td>
-              {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}> <AiOutlineEdit/> <span><AiOutlineDelete onClick={()=>deleteHandler(sale.saleId && sale.saleId)} /></span></td>}
+              {session?.user?.role === 'ADMIN' &&  <td className={classes.actions}> <span><AiOutlineDelete onClick={()=>deleteHandler(sale.saleId && sale.saleId)} /></span></td>}
              
           </tr>
             )}
          </tbody>
      </table>
 </div>
-{deleteModal && <Delete routeUrl="sale" selectedId={selectedSaleId}/>}
+{deleteModal && <Delete type='crops' typeId={cropId} routeUrl="sale" selectedId={selectedSaleId}/>}
  </div>
   )
 }

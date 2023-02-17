@@ -16,6 +16,7 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
   const[totalAmount, setTotalAmount] =useState(0)
   const [selectedId, setSelectedId] = useState()
 
+  const {cropId} = router.query
 
   const { data: session, status } = useSession()
 
@@ -63,9 +64,8 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
                  <td>{expenditure.date}</td>
                  <td>{expenditure.expenditureType}</td>
                  <td>{expenditure.amount}</td>
-                 {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}> <AiOutlineEdit 
-                onClick={()=>passUpdateData(expenditure)}
-                 /> <span><AiOutlineDelete onClick={() => deleteHandler(expenditure?.expenditureId)}/></span></td> }
+                 {session?.user?.role === 'ADMIN' &&   <td className={classes.actions}>
+                <span><AiOutlineDelete onClick={() => deleteHandler(expenditure?.expenditureId)}/></span></td> }
                
              </tr>
                )}
@@ -73,7 +73,7 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
         </table>
          
     </div>
-{deleteModal && <Delete routeUrl="expenditure" selectedId={selectedId}/>}
+{deleteModal && <Delete type='crops' typeId={cropId} routeUrl="expenditure" selectedId={selectedId}/>}
 
     </div>
   )

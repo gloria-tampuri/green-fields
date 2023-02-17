@@ -127,7 +127,7 @@ if (response.ok) {
 //  }
   return (
     <div>  <div className={classes.AddExpenditureForm}>
-    <div className={classes.arrowName}> <BiArrowBack className={classes.back} onClick={()=>router.back()}/> <h2> {data && data.batchName}</h2> <h1></h1>
+    <div className={classes.arrowName}> <BiArrowBack className={classes.back} onClick={()=>router.back()}/> <h2> {data?.crop?.cropName}</h2> <h1></h1>
       </div>
  <h2>Add Expenditure</h2>
 

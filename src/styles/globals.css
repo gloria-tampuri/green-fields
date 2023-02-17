@@ -3,6 +3,8 @@ box-sizing: border-box;
 }
 * {
  margin: 0;
+ appearance: none;
+ -webkit-appearance:none;
 }
 html, body {
 height: 100%;

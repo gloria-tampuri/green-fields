@@ -13,12 +13,19 @@ const MiscellaneousList = () => {
     const router = useRouter()
     const deleteCtx = useContext(DeleteContext)
     const { hideDeleteModal, showDeleteModal, deleteModal } = deleteCtx
+    const {equipmentId} = router.query
 
     const { data: session, status } = useSession()
 
     const[totalAmount, setTotalAmount] =useState(0)
+    const [selectedId, setSelectedId] = useState()
 
   const { data, error } = useSWR(`/api/equipment/${router.query.equipmentId}`, fetcher,{refreshInterval: 1000})
+
+  const deleteHandler = (id) =>{
+    setSelectedId(id);
+    showDeleteModal()
+  }
 
   useEffect(() =>{
     const allAmounts = data?.equipment?.miscellaneous?.map(miscellaneous => +miscellaneous.amount).reduce(
@@ -53,14 +60,14 @@ const MiscellaneousList = () => {
                                 <td>{miscellaneous.date}</td>
                                 <td>{miscellaneous.miscellaneousType}</td>
                                 <td>{miscellaneous.amount}</td>
-                                {session?.user?.role === 'ADMIN' && <td className={classes.actions}> <AiOutlineEdit /> <span><AiOutlineDelete onClick={showDeleteModal} /></span></td>}
+                                {session?.user?.role === 'ADMIN' && <td className={classes.actions}>  <span><AiOutlineDelete onClick={() => deleteHandler(miscellaneous?.miscellaneousId)} /></span></td>}
                             </tr>)}
 
                         </tbody>
                     </table>
 
                 </div>
-                {deleteModal && <Delete />}
+                {deleteModal && <Delete type='equipment' typeId={equipmentId} routeUrl="miscellaneous" selectedId={selectedId}/>}
             </div>
 
         </div>
