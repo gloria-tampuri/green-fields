@@ -91,6 +91,7 @@ const AddEquipForm = () => {
         />
 
 <label htmlFor='makeYear'>Make Year</label>
+
         <input className={classes.addFormInput}
           type='number'
           placeholder='Enter Make Year'
