@@ -5,12 +5,15 @@ import { BiArrowBack } from 'react-icons/bi'
 import classes from './Crop.module.css'
 import CropSummary from './CropSummary'
 import Header from 'Components/Header/Header'
+import { signOut, useSession } from "next-auth/react"
+
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Crop = () => {
    const router = useRouter()
   const {year,cropId} = router.query
+  const { data: session, status } = useSession()
  
  
     const { data, error } = useSWR(`/api/crops/${cropId}`, fetcher, { refreshInterval: 1000 })
@@ -31,8 +34,10 @@ const Crop = () => {
         <div className={classes.actionbtn} onClick={() => router.push(`/dashboard/${year}/crops/${cropId}/miscellaneous`)}>Miscellaneous</div>
       </div>
         </div>
-        <div className={classes.edit}><p onClick={getToEdit}>Edit</p></div>
-        <CropSummary crop = {data && data.crop}/>
+      {session?.user?.role === 'ADMIN' &&  <div>
+      <div className={classes.edit}><p onClick={getToEdit}>Edit</p></div>
+       </div>}
+       <CropSummary crop = {data && data.crop}/>
   </div>
   )
 }

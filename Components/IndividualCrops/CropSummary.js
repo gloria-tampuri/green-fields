@@ -13,6 +13,8 @@ const CropSummary = ({ crop }) => {
   const [totalExpenditure, setTotalExpenditure] = useState(0)
   const [totalMiscellaneous, setTotalMiscellaneous] = useState(0)
   const [remainingBags, setRemainingBags] = useState(0)
+  const { data: session, status } = useSession()
+
 
   useEffect(() => {
     if (crop != null || crop !== undefined) {
