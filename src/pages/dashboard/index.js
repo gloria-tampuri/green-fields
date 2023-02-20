@@ -39,7 +39,7 @@ const DashboardPage = ({ session }) => {
 export default DashboardPage
 
 export async function getServerSideProps(context) {
-  // console.log(context.session);
+
   const session = await getSession({
     req: context.req
   })

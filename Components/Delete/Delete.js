@@ -16,7 +16,7 @@ const Delete = ({selectedId,routeUrl,type,typeId}) => {
     const{ hideDeleteModal}=deleteCtx
     const deleteSaleHandler = async () =>{
       // Perform our delete logic here
-      console.log("Start API");
+
       //  await fetch(`/api/crops/${cropId}/${routeUrl}/${selectedId}`,{
       //     method: 'PATCH'
       //    })

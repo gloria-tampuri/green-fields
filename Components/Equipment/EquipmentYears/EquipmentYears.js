@@ -10,14 +10,12 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const EquipmentYears = () => {
   const router = useRouter()
-  const { data, error } = useSWR('/api/equipment', fetcher,{refreshInterval: 1000})
-  const {year}=router.query
+  const { data, error } = useSWR('/api/equipment/year', fetcher,{refreshInterval: 1000})
 
-console.log(data);
 
   return (
     <div className={classes.year}>
-     {data?.equipments.map((equipment) =>  <Link key={equipment._id} className={classes.yearlistLink} href={`/dashboard/${equipment.year}/equipments`}> <li className={classes.yearlist}> {equipment.year}</li></Link>) }
+     {data && data.map((year,i) =>  <Link key={i} className={classes.yearlistLink} href={`/dashboard/${year}/equipments`}> <li className={classes.yearlist}> {year}</li></Link>) }
      </div>
   )
 }

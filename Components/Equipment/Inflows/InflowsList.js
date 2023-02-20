@@ -13,7 +13,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const InflowsList = () => {
   const router = useRouter()
  const {equipmentId} = router.query
- console.log(equipmentId);
+
 
   const { data: session, status } = useSession()
   const deleteCtx = useContext(DeleteContext)
@@ -28,7 +28,7 @@ const InflowsList = () => {
     setSelectedId(id);
     showDeleteModal()
   }
-console.log(selectedId);
+
   useEffect(() =>{
     const allAmounts = data?.equipment?.inflows?.map(inflow => +inflow.amount).reduce(
       (accumulator, currentValue) => accumulator + currentValue,

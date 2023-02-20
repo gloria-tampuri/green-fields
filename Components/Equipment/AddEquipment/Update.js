@@ -22,7 +22,7 @@ const Update = () => {
 
       const { data, error } = useSWR(`/api/equipment/${equipmentId}`, fetcher, { refreshInterval: 1000 })
 
-      console.log(data?.equipment);
+  
 
     const[equipType,setEquipType]=useState('')
     const[model, setModel]=useState('')

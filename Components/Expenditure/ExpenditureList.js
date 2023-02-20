@@ -36,7 +36,7 @@ const ExpenditureList = ({onUpdateData,onIsUpdate}) => {
   },[data])
 
   const passUpdateData=(expenditure)=>{
-    console.log(expenditure);
+
   //   onIsUpdate()
   //  return onUpdateData(expenditure)
   }

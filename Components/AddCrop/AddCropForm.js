@@ -5,9 +5,13 @@ import classes from './AddCropForm.module.css'
 import { BiArrowBack } from 'react-icons/bi'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { signOut, useSession } from "next-auth/react"
+
 
 const AddCropForm = () => {
   const router = useRouter()
+  const { data: session, status } = useSession()
+ 
 
   const notify = () => toast.success("Crop Added!", {
     position: 'top-center',
@@ -30,6 +34,10 @@ const AddCropForm = () => {
       endDate: endDate,
       numberofbags: numberofbags,
       year: year,
+      createdBy:{
+        id:session?.user?.id,
+        name:session?.user?.name
+      },
       sales: [
 
       ],

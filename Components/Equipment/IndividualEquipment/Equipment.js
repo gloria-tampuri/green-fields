@@ -15,7 +15,7 @@ const Equipment = () => {
  
  
     const { data, error } = useSWR(`/api/equipment/${equipmentId}`, fetcher, { refreshInterval: 1000 })
-    console.log(data?.equipment);
+  
 
     const getToEdit = () => {
         return router.push(`/dashboard/${year}/equipments/${equipmentId}/update`)

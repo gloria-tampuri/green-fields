@@ -3,6 +3,8 @@ import { BiArrowBack } from 'react-icons/bi'
 import classes from './AddEquipForm.module.css'
 import { useRouter } from 'next/router'
 import moment from 'moment'
+import { signOut, useSession } from "next-auth/react"
+
 
 
 const AddEquipForm = () => {
@@ -12,6 +14,9 @@ const AddEquipForm = () => {
     const[model, setModel]=useState('')
     const[makeYear, setMakeYear] =useState('')
     const [datePurchased, setDatePurchased]=useState('')
+
+  const { data: session, status } = useSession()
+
 
     const notify = () => toast.success("Equipment Updated!",{
       position:'top-center',
@@ -28,7 +33,10 @@ const AddEquipForm = () => {
       datePurchased: datePurchased,
       year: moment(datePurchased).format('YYYY'),
       makeYear: makeYear,
-     
+      createdBy:{
+        id:session?.user?.id,
+        name:session?.user?.name
+      },
       inflows: [
 
       ],
@@ -49,7 +57,7 @@ const AddEquipForm = () => {
       body: (JSON.stringify(data))
     })
 
-        console.log(data);
+ 
 
         setEquipType('')
         setModel('')

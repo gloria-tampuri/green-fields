@@ -1,6 +1,7 @@
 import miscellaneous from '@/pages/dashboard/[year]/crops/[cropId]/miscellaneous';
 import React, { useEffect, useState } from 'react'
 import classes from './Summary.module.css'
+import { useSession } from 'next-auth/react';
 
 const CropSummary = ({ crop }) => {
   // const {cropName,cropId, numberOfBags, startDate, endDate} = crop

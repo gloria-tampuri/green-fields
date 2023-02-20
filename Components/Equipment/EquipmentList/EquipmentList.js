@@ -12,7 +12,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const EquipmentList = () => {
   const router = useRouter()
   const {year}=router.query
-  console.log(year);
+
   const { data, error } = useSWR(`/api/equipment/year/${year}`, fetcher,{refreshInterval: 1000})
   return (
     <div>

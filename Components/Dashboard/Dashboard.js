@@ -16,7 +16,7 @@ const Dashboard = () => {
   const changeTypeToCrop = () => {
     setType(true)
   }
-  console.log(type);
+  
   return (
     <div>
       <div className={classes.cropequip}>

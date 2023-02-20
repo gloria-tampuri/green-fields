@@ -10,8 +10,13 @@ const UserTable = () => {
     const router = useRouter()
     const { data, error } = useSWR(`/api/users`, fetcher, { refreshInterval: 1000 })
 
-     const {data: session} = useSession()
-     console.log(session?.user);
+
+    const {data: session} = useSession()
+
+    
+    const filterUser = data && data?.users.filter(user => user._id !== session?.user?.id)
+
+ 
 
     const roleHandler =async (role, user) => {
         // setUserId(userId)
@@ -53,7 +58,7 @@ const UserTable = () => {
             body: (JSON.stringify(userUpdate))
         })
 
-        console.log(response);
+       
     }
 
 
@@ -71,7 +76,7 @@ const UserTable = () => {
                     </tr>
                 </thead>
                 <tbody className={classes.tablebody}>
-                    {data && data.users.map(user =>
+                    {filterUser && filterUser.map(user =>
                         <tr key={user._id}>
                             <td className={classes.name}>{user.name}</td>
                             <td>
