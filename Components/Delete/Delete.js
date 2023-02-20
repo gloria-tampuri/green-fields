@@ -29,7 +29,7 @@ const Delete = ({selectedId,routeUrl,type,typeId}) => {
   return (
     <Modal> 
         <div className={classes.close}><AiOutlineClose onClick={hideDeleteModal} className={classes.closeIcon}/></div>
-   <p className={classes.header}> Are you sure you want to delete entery     ?</p>
+   <p className={classes.header}> Are you sure you want to delete entry     ?</p>
 
     <div className={classes.actions}>
         <div className={classes.actions1} onClick={deleteSaleHandler}>Delete</div>

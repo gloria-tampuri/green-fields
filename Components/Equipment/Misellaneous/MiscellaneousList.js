@@ -56,7 +56,8 @@ const MiscellaneousList = () => {
                                   </tr>
                         </thead>
                         <tbody>
-                        {data && data?.equipment?.miscellaneous.map((miscellaneous)=> <tr  key={miscellaneous.miscellaneousId}>
+                        {data && data?.equipment?.miscellaneous.map((miscellaneous)=> <tr  key={miscellaneous.miscellaneousId
+}>
                                 <td>{miscellaneous.date}</td>
                                 <td>{miscellaneous.miscellaneousType}</td>
                                 <td>{miscellaneous.amount}</td>

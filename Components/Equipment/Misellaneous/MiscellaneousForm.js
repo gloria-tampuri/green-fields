@@ -48,8 +48,7 @@ const MiscellaneousForm = () => {
             year: data?.equipment?.year,
             createdAt: data?.equipment?.createdAt,
             inflows:[
-                ...data.equipment.inflows,
-               
+                ...data.equipment.inflows, 
             ],
             expenditure: [
                 ...data.equipment.expenditure,

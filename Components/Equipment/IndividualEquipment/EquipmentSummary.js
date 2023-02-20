@@ -39,6 +39,7 @@ const EquipmentSummary = ({equipment}) => {
         <li>Inflows:<span>{totalInflow}</span></li>
         <li>Expenditure:<span>{totalExpenditure}</span></li>
         <li>Miscellaneous:<span>{totalMiscellaneous}</span></li>
+        <li>Added By: <span>{equipment && equipment.createdBy.name}</span></li>
       </ul>
     </div>
   )

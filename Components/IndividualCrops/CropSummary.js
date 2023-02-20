@@ -67,6 +67,7 @@ const CropSummary = ({ crop }) => {
         <li>Total Expenditure: <span>{totalExpenditure}</span></li>
         <li>Total Miscellaneous: <span>{ totalMiscellaneous}</span></li>
         <li>Remaining Bags: <span>{remainingBags}</span></li>
+        <li>Added By: <span>{crop && crop.createdBy.name}</span></li>
       </ul>
     </div>
   )

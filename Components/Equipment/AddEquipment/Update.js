@@ -6,6 +6,7 @@ import classes from './AddEquipForm.module.css'
 import {BiArrowBack} from 'react-icons/bi'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -46,6 +47,7 @@ const Update = () => {
         const updatedData={
           equipmentType:equipType,
           model:model,
+          year: moment(datePurchased).format('YYYY'),
           makeYear:makeYear,
           datePurchased:datePurchased,
           inflows: [
@@ -56,7 +58,7 @@ const Update = () => {
             ...data.equipment.expenditure,
         ],
         miscellaneous: [
-            ...data.equipment.expenditure,
+            ...data.equipment.miscellaneous,
         ]
         
         }

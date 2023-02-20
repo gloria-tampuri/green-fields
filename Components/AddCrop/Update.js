@@ -59,7 +59,7 @@ const Update = () => {
           ...data.crop.expenditure,
       ],
       miscellaneous: [
-          ...data.crop.expenditure,
+          ...data.crop.miscellaneous,
       ]
       
     }
